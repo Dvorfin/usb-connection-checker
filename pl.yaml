@@ -1,0 +1,8 @@
+- name: SANBOX PLAYBOOK
+  hosts: all
+  become: yes
+
+  roles:
+    - role: usb-checker-role
+
+  
