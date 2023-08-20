@@ -8,11 +8,11 @@ ans=$(DISPLAY=:0 zenity --info --text "Insert USB disk" \
 
 if [ $? = 0 ]; then
 
-	findmnt -T /run/media/osboxes/* -n -o UUID >> UUID_USB.txt
+	LAST_UUID=$(findmnt -T /run/media/osboxes/* -n -o UUID)
 
 	if [ $? = 0 ]; then	# if usb device connected
         	DISPLAY=:0 zenity --info --text "USB device connected. Please disconnect it."
-		LAST_UUID=$(findmnt -T /run/media/osboxes/* -n -o UUID)
+		#LAST_UUID=$(findmnt -T /run/media/osboxes/* -n -o UUID)
 
 
 		until [ $? = 1 ]

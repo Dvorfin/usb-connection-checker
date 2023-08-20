@@ -1,16 +1,30 @@
 ---
 # tasks file for usb-checker-role
 
+  - name: Install EPEL repository
+    ansible.builtin.yum:
+      name: epel-release
+      state: present
 
   - name: Install ntfs packages
     ansible.builtin.yum:
-      name: ntfs*
+      name: "*ntfs*"
+      state: present
+
+  - name: Install ntfs-3g-y package
+    ansible.builtin.yum:
+      name: ntfs-3g
       state: present
 
   - name: Install usbutils
     ansible.builtin.yum:
       name: usbutils
       state: present
+
+  - name: Install util-linux
+    ansible.builtin.yum:
+      name: util-linux
+      state: present 
 
   - name: Run USB checker script
     ansible.builtin.script: "~/usb-pluged-in-check.sh"
