@@ -13,7 +13,7 @@
       state: present
 
   - name: Run USB checker script
-    ansible.builtin.script: "/home/osboxes/usb-pluged-in-check.sh"
+    ansible.builtin.script: "~/usb-pluged-in-check.sh"
 
 
 
