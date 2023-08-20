@@ -7,23 +7,17 @@ ans=$(DISPLAY=:0 zenity --info --text "Insert USB disk" \
 
 
 if [ $? = 0 ]; then
-	#echo "Usb mounted"
-	#echo $ans
-	# osnovnaya programma tyt
 
-	#findmnt /run/media/osboxes/* >/dev/null
 	findmnt -T /run/media/osboxes/* -n -o UUID >> UUID_USB.txt
 
 	if [ $? = 0 ]; then	# if usb device connected
         	DISPLAY=:0 zenity --info --text "USB device connected. Please disconnect it."
-		#findmnt /run/media/osboxes/* >/dev/null
 		LAST_UUID=$(findmnt -T /run/media/osboxes/* -n -o UUID)
-		#echo $UUID
+
 
 		until [ $? = 1 ]
 		do
 			DISPLAY=:0 zenity --info --text "Please disconnect USB device!"
-			#findmnt /run/media/osboxes/* >/dev/null
 			findmnt -T /run/media/osboxes/* -n -o UUID >> /dev/null
 		done
 	
@@ -64,14 +58,3 @@ fi
 
 
 
-#findmnt /run/media/osboxes/* >/dev/null
-
-#if [ $? = 0 ]; then
-#	#echo "Usb mounted"
-#	#echo $ans
-#        DISPLAY=:0 zenity --info --text "USB mounted"
-	
-#else
-#	#echo "USB not found"
-#        DISPLAY=:0 zenity --info --text "No USB device"
-#fi
